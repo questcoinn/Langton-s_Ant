@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div id="container">
+      <table>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <script src="ant.js"></script>
+    <script>
+      /* init */
+      const tbody = document.querySelector("tbody");
+      const LIMIT = 90;
+
+      for(let i = 0; i < LIMIT; i++) {
+        const tr = document.createElement("tr");
+        for(let j = 0; j < LIMIT; j++) {
+          const td = document.createElement("td");
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      
+      const colors = {
+        "red": "l",
+        "orange": "r",
+        "yellow": "l",
+        "green": "r",
+        "blue": "l",
+        "purple": "r",
+      }
+      // lacate ant at __ 45th row x 45th column __ 
+      const ant = new Ant(45, 45, LIMIT, colors);
+
+      /* run */
+      (async () => {
+        let i = 0;
+        while(await ant.go()) {
+          if(i === 10) { // 10 moves per 1 frame
+            await new Promise((resolve, reject) => {
+              setTimeout(() => {
+                i = 0;
+                resolve();
+              }, 10); // 1 frame per 10ms
+            });
+          } else {
+            i++;
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
