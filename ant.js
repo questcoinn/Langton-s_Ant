@@ -23,10 +23,10 @@ class Ant {
   turnAround() {
     switch(this.colors[this.cell.style.backgroundColor]) {
       case "l":
-        this.dir = (this.dir + 1) % 4;
+        this.dir = (this.dir + 3) % 4;
         break;
       case "r":
-        this.dir = (this.dir + 3) % 4;
+        this.dir = (this.dir + 1) % 4;
         break;
       default:
     }
