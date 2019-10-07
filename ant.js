@@ -64,9 +64,8 @@ class Ant {
         next = color;
         break;
       }
-      if(next && color === backgroundColor) {
+      if(color === backgroundColor) {
         flag = true;
-        continue;
       }
     }
     
